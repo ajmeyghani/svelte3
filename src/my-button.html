@@ -1,0 +1,25 @@
+<script>
+  import {createEventDispatcher} from "svelte";
+  export let inner = "default value";
+
+  const dispatch = createEventDispatcher();
+  function sayHello() {
+    dispatch("message", {
+      text: "Hello!",
+    });
+  }
+
+  function handleMouseDown() {
+    dispatch("mdown", {
+      d: "foo",
+    });
+  }
+</script>
+
+<style>
+  button {
+    padding: 10px;
+  }
+</style>
+
+<button on:click={sayHello} on:mousedown={handleMouseDown}>{inner}</button>

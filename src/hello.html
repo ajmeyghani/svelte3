@@ -1,0 +1,58 @@
+<script>
+  const name = "Svelte 3 Beta.";
+  let username = "";
+  const buttonValue = "boo";
+  import NiceButton from "./my-button.html";
+  import PhotoGallery from "./photos.html";
+
+  function click1(e) {
+    console.log(e, "click1");
+  }
+
+  function click2(e) {
+    console.log(e, "click2");
+  }
+
+  function mouseDownCall(e) {
+    console.log(e, "mouseDownCall");
+  }
+</script>
+
+<style>
+  :global(body) {
+    margin: 0;
+    height: 100vh;
+    --padding1: 15px;
+  }
+
+  :global(p, h1, h2, h3, h4) {
+    margin: 0;
+    padding: 0;
+  }
+
+  .buttons {
+    display: flex;
+    padding: var(--padding1);
+  }
+
+  .main {
+  }
+</style>
+
+<div class="main">
+  <p>Hello {name}</p>
+  <p>Some buttons:</p>
+  <div class="buttons">
+    <NiceButton on:message={click1} inner={'click 1'} on:mdown={mouseDownCall} />
+    <button on:click={click2}>Click 2</button>
+  </div>
+  <div>
+    <p>input:</p>
+    <input bind:value={username} placeholder="enter your username">
+    <p>Hello {username || 'stranger'}!</p>
+  </div>
+  <div>
+    <PhotoGallery />
+  </div>
+</div>
+
